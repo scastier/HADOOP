@@ -1,0 +1,53 @@
+# connect to HIVE
+beeline
+
+# connect to db (dsti...)
+use dsti_2020_fall_1
+
+/*
+create table from csv file LOCATION
+the location pointed by hive in HDFS is 'drivers/'
+it constains the csv file
+We respect the structure of the csv file
+tblproperties ("skip.header.line.count"="1") to ignore title of columns in the csv file
+*/
+create external table seb_drivers_csv 
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)       
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1");
+
+# other types : INT, DECIMAL, CHAR(1) ...
+
+!sql show tables;
+
+!sql select * from seb_drivers_csv;
+
+# create orc formatted table with schema like structure source
+create external table seb_drivers_orc
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)       
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1");
+
+!sql show tables;
+
+!sql select * from seb_drivers_orc;

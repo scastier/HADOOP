@@ -1,0 +1,538 @@
+Microsoft Windows [version 10.0.18363.1082]
+(c) 2019 Microsoft Corporation. Tous droits réservés.
+
+C:\WINDOWS\system32>ssh c.sebastien-dsti@edge-1.au.adaltas.cloud
+Password:
+Last login: Thu Sep 17 09:37:54 2020 from 10.0.0.8
+-bash-4.2$ pwd
+/home/c.sebastien-dsti
+
+-bash-4.2$ hdfs dfs -ls /data/drivers/drivers.csv
+-rw-r--r--   2 xavier hdfs       2043 2020-09-18 08:19 /data/drivers/drivers.csv
+
+-bash-4.2$ hdfs dfs -head /data/drivers/drivers.csv
+driverId,name,ssn,location,certified,wage-plan
+10,George Vetticaden,621011971,244-4532 Nulla Rd.,N,miles
+11,Jamie Engesser,262112338,366-4125 Ac Street,N,miles
+12,Paul Coddin,198041975,Ap #622-957 Risus. Street,Y,hours
+13,Joe Niemiec,139907145,2071 Hendrerit. Ave,Y,hours
+14,Adis Cesir,820812209,Ap #810-1228 In St.,Y,hours
+15,Rohit Bakshi,239005227,648-5681 Dui- Rd.,Y,hours
+16,Tom McCuch,363303105,P.O. Box 313- 962 Parturient Rd.,Y,hours
+17,Eric Mizell,123808238,P.O. Box 579- 2191 Gravida. Street,Y,hours
+18,Grant Liu,171010151,Ap #928-3159 Vestibulum Av.,Y,hours
+19,Ajay Singh,160005158,592-9430 Nonummy Avenue,Y,hours
+20,Chris Harris,921812303,883-2691 Proin Avenue,Y,hours
+21,Jeff Markham,209408086,Ap #852-7966 Facilisis St.,Y,hours
+22,Nadeem Asghar,783204269,154-9147 Aliquam Ave,Y,hours
+23,Adam Diaz,928312208,P.O. Box 260- 6127 Vitae Road,Y,hours
+24,Don Hilborn,254412152,4361 Ac Road,Y,hours
+25,Jean-Philippe Playe,913310051,P.O. Box 812- 6238 Ac Rd.,Y,hours
+
+-bash-4.2$ hdfs dfs -mkdir drivers
+
+-bash-4.2$ hdfs dfs -get /data/drivers/drivers.csv drivers.csv
+
+-bash-4.2$ ls
+drivers.csv  example.txt  mapper.py  reducer.py  reducer2.py
+
+-bash-4.2$ cat drivers.csv
+driverId,name,ssn,location,certified,wage-plan
+10,George Vetticaden,621011971,244-4532 Nulla Rd.,N,miles
+11,Jamie Engesser,262112338,366-4125 Ac Street,N,miles
+12,Paul Coddin,198041975,Ap #622-957 Risus. Street,Y,hours
+13,Joe Niemiec,139907145,2071 Hendrerit. Ave,Y,hours
+14,Adis Cesir,820812209,Ap #810-1228 In St.,Y,hours
+15,Rohit Bakshi,239005227,648-5681 Dui- Rd.,Y,hours
+16,Tom McCuch,363303105,P.O. Box 313- 962 Parturient Rd.,Y,hours
+17,Eric Mizell,123808238,P.O. Box 579- 2191 Gravida. Street,Y,hours
+18,Grant Liu,171010151,Ap #928-3159 Vestibulum Av.,Y,hours
+19,Ajay Singh,160005158,592-9430 Nonummy Avenue,Y,hours
+20,Chris Harris,921812303,883-2691 Proin Avenue,Y,hours
+21,Jeff Markham,209408086,Ap #852-7966 Facilisis St.,Y,hours
+22,Nadeem Asghar,783204269,154-9147 Aliquam Ave,Y,hours
+23,Adam Diaz,928312208,P.O. Box 260- 6127 Vitae Road,Y,hours
+24,Don Hilborn,254412152,4361 Ac Road,Y,hours
+25,Jean-Philippe Playe,913310051,P.O. Box 812- 6238 Ac Rd.,Y,hours
+26,Michael Aube,124705141,P.O. Box 213- 8948 Nec Ave,Y,hours
+27,Mark Lochbihler,392603159,8355 Ipsum St.,Y,hours
+28,Olivier Renault,959908181,P.O. Box 243- 6509 Erat. Avenue,Y,hours
+29,Teddy Choi,185502192,P.O. Box 106- 7003 Amet Rd.,Y,hours
+30,Dan Rice,282307061,Ap #881-9267 Mollis Avenue,Y,hours
+31,Rommel Garcia,858912101,P.O. Box 945- 6015 Sociis St.,Y,hours
+32,Ryan Templeton,290304287,765-6599 Egestas. Av.,Y,hours
+33,Sridhara Sabbella,967409015,Ap #477-2507 Sagittis Avenue,Y,hours
+34,Frank Romano,391407216,Ap #753-6814 Quis Ave,Y,hours
+35,Emil Siemes,971401151,321-2976 Felis Rd.,Y,hours
+36,Andrew Grande,245303216,Ap #685-9598 Egestas Rd.,Y,hours
+37,Wes Floyd,190504074,P.O. Box 269- 9611 Nulla Street,Y,hours
+38,Scott Shaw,386411175,276 Lobortis Road,Y,hours
+39,David Kaiser,967706052,9185 At Street,Y,hours
+40,Nicolas Maillard,208510217,1027 Quis Rd.,Y,hours
+41,Greg Phillips,308103116,P.O. Box 847- 5961 Arcu. Road,Y,hours
+42,Randy Gelhausen,853302254,145-4200 In- Avenue,Y,hours
+43,Dave Patton,977706052,3028 A- St.,Y,hours-bash-4.2$ ^C
+
+-bash-4.2$ hdfs dfs -put drivers.csv drivers/
+
+-bash-4.2$ hdfs dfs -ls drivers
+Found 1 items
+-rw-r--r--   2 c.sebastien-dsti hdfs       2043 2020-09-18 12:43 drivers/drivers.csv
+
+-bash-4.2$ beeline
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.0.0-78/hive/lib/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.0.0-78/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://zoo-1.au.adaltas.cloud:2181,zoo-2.au.adaltas.cloud:2181,zoo-3.au.adaltas.cloud:2181/default;principal=hive/_HOST@AU.ADALTAS.CLOUD;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
+20/09/18 12:51:33 [main]: INFO jdbc.HiveConnection: Connected to hive-s2-1.au.adaltas.cloud:10000
+Connected to: Apache Hive (version 3.1.0.3.1.0.0-78)
+Driver: Hive JDBC (version 3.1.0.3.1.0.0-78)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 3.1.0.3.1.0.0-78 by Apache Hive
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> use dsti_2020_fall_1;
+INFO  : Compiling command(queryId=hive_20200918125505_18004408-f72b-4098-96dd-56c2e96039c7): use dsti_2020_fall_1
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918125505_18004408-f72b-4098-96dd-56c2e96039c7); Time taken: 0.038 seconds
+INFO  : Executing command(queryId=hive_20200918125505_18004408-f72b-4098-96dd-56c2e96039c7): use dsti_2020_fall_1
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918125505_18004408-f72b-4098-96dd-56c2e96039c7); Time taken: 0.045 seconds
+INFO  : OK
+No rows affected (0.143 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql show tables;
+INFO  : Compiling command(queryId=hive_20200918125553_56a371cf-2e19-4497-a231-ac7b9952a686):  show tables
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918125553_56a371cf-2e19-4497-a231-ac7b9952a686); Time taken: 0.071 seconds
+INFO  : Executing command(queryId=hive_20200918125553_56a371cf-2e19-4497-a231-ac7b9952a686):  show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918125553_56a371cf-2e19-4497-a231-ac7b9952a686); Time taken: 0.016 seconds
+INFO  : OK
++-----------+
+| tab_name  |
++-----------+
++-----------+
+No rows selected (0.147 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> create external table seb_drivers_csv
+. . . . . . . . . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . . . . . . . . .> driverId string,
+. . . . . . . . . . . . . . . . . . . . . . .> name string,
+. . . . . . . . . . . . . . . . . . . . . . .> ssn string,
+. . . . . . . . . . . . . . . . . . . . . . .> location string,
+. . . . . . . . . . . . . . . . . . . . . . .> certified string,
+. . . . . . . . . . . . . . . . . . . . . . .> wagePlan string
+. . . . . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS TEXTFILE
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION 'drivers/'
+. . . . . . . . . . . . . . . . . . . . . . .> tblproperties ("skip.header.line.count"="1");
+INFO  : Compiling command(queryId=hive_20200918131424_aee4a331-0f4a-4f87-86f0-e04aa531415d): create external table seb_drivers_csv
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1")
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918131424_aee4a331-0f4a-4f87-86f0-e04aa531415d); Time taken: 0.141 seconds
+INFO  : Executing command(queryId=hive_20200918131424_aee4a331-0f4a-4f87-86f0-e04aa531415d): create external table seb_drivers_csv
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1")
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918131424_aee4a331-0f4a-4f87-86f0-e04aa531415d); Time taken: 0.143 seconds
+INFO  : OK
+No rows affected (0.319 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql show tables;
+INFO  : Compiling command(queryId=hive_20200918131508_16bcd6f8-3b52-46ad-be81-ce08da1ee133):  show tables
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918131508_16bcd6f8-3b52-46ad-be81-ce08da1ee133); Time taken: 0.04 seconds
+INFO  : Executing command(queryId=hive_20200918131508_16bcd6f8-3b52-46ad-be81-ce08da1ee133):  show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918131508_16bcd6f8-3b52-46ad-be81-ce08da1ee133); Time taken: 0.034 seconds
+INFO  : OK
++---------------------+
+|      tab_name       |
++---------------------+
+| erick_drivers_csv   |
+| erick_drivers_orc   |
+| mouaad_drivers_csv  |
+| seb_drivers_csv     |
++---------------------+
+4 rows selected (0.12 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql select * from seb_drivers_csv;
+INFO  : Compiling command(queryId=hive_20200918131537_741cb3b3-1e5b-45ad-ac07-28840cbc445a):  select * from seb_drivers_csv
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:seb_drivers_csv.driverid, type:string, comment:null), FieldSchema(name:seb_drivers_csv.name, type:string, comment:null), FieldSchema(name:seb_drivers_csv.ssn, type:string, comment:null), FieldSchema(name:seb_drivers_csv.location, type:string, comment:null), FieldSchema(name:seb_drivers_csv.certified, type:string, comment:null), FieldSchema(name:seb_drivers_csv.wageplan, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918131537_741cb3b3-1e5b-45ad-ac07-28840cbc445a); Time taken: 0.231 seconds
+INFO  : Executing command(queryId=hive_20200918131537_741cb3b3-1e5b-45ad-ac07-28840cbc445a):  select * from seb_drivers_csv
+INFO  : Completed executing command(queryId=hive_20200918131537_741cb3b3-1e5b-45ad-ac07-28840cbc445a); Time taken: 0.019 seconds
+INFO  : OK
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+| seb_drivers_csv.driverid  | seb_drivers_csv.name  | seb_drivers_csv.ssn  |      seb_drivers_csv.location       | seb_drivers_csv.certified  | seb_drivers_csv.wageplan  |
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+| 10                        | George Vetticaden     | 621011971            | 244-4532 Nulla Rd.                  | N                          | miles                     |
+| 11                        | Jamie Engesser        | 262112338            | 366-4125 Ac Street                  | N                          | miles                     |
+| 12                        | Paul Coddin           | 198041975            | Ap #622-957 Risus. Street           | Y                          | hours                     |
+| 13                        | Joe Niemiec           | 139907145            | 2071 Hendrerit. Ave                 | Y                          | hours                     |
+| 14                        | Adis Cesir            | 820812209            | Ap #810-1228 In St.                 | Y                          | hours                     |
+| 15                        | Rohit Bakshi          | 239005227            | 648-5681 Dui- Rd.                   | Y                          | hours                     |
+| 16                        | Tom McCuch            | 363303105            | P.O. Box 313- 962 Parturient Rd.    | Y                          | hours                     |
+| 17                        | Eric Mizell           | 123808238            | P.O. Box 579- 2191 Gravida. Street  | Y                          | hours                     |
+| 18                        | Grant Liu             | 171010151            | Ap #928-3159 Vestibulum Av.         | Y                          | hours                     |
+| 19                        | Ajay Singh            | 160005158            | 592-9430 Nonummy Avenue             | Y                          | hours                     |
+| 20                        | Chris Harris          | 921812303            | 883-2691 Proin Avenue               | Y                          | hours                     |
+| 21                        | Jeff Markham          | 209408086            | Ap #852-7966 Facilisis St.          | Y                          | hours                     |
+| 22                        | Nadeem Asghar         | 783204269            | 154-9147 Aliquam Ave                | Y                          | hours                     |
+| 23                        | Adam Diaz             | 928312208            | P.O. Box 260- 6127 Vitae Road       | Y                          | hours                     |
+| 24                        | Don Hilborn           | 254412152            | 4361 Ac Road                        | Y                          | hours                     |
+| 25                        | Jean-Philippe Playe   | 913310051            | P.O. Box 812- 6238 Ac Rd.           | Y                          | hours                     |
+| 26                        | Michael Aube          | 124705141            | P.O. Box 213- 8948 Nec Ave          | Y                          | hours                     |
+| 27                        | Mark Lochbihler       | 392603159            | 8355 Ipsum St.                      | Y                          | hours                     |
+| 28                        | Olivier Renault       | 959908181            | P.O. Box 243- 6509 Erat. Avenue     | Y                          | hours                     |
+| 29                        | Teddy Choi            | 185502192            | P.O. Box 106- 7003 Amet Rd.         | Y                          | hours                     |
+| 30                        | Dan Rice              | 282307061            | Ap #881-9267 Mollis Avenue          | Y                          | hours                     |
+| 31                        | Rommel Garcia         | 858912101            | P.O. Box 945- 6015 Sociis St.       | Y                          | hours                     |
+| 32                        | Ryan Templeton        | 290304287            | 765-6599 Egestas. Av.               | Y                          | hours                     |
+| 33                        | Sridhara Sabbella     | 967409015            | Ap #477-2507 Sagittis Avenue        | Y                          | hours                     |
+| 34                        | Frank Romano          | 391407216            | Ap #753-6814 Quis Ave               | Y                          | hours                     |
+| 35                        | Emil Siemes           | 971401151            | 321-2976 Felis Rd.                  | Y                          | hours                     |
+| 36                        | Andrew Grande         | 245303216            | Ap #685-9598 Egestas Rd.            | Y                          | hours                     |
+| 37                        | Wes Floyd             | 190504074            | P.O. Box 269- 9611 Nulla Street     | Y                          | hours                     |
+| 38                        | Scott Shaw            | 386411175            | 276 Lobortis Road                   | Y                          | hours                     |
+| 39                        | David Kaiser          | 967706052            | 9185 At Street                      | Y                          | hours                     |
+| 40                        | Nicolas Maillard      | 208510217            | 1027 Quis Rd.                       | Y                          | hours                     |
+| 41                        | Greg Phillips         | 308103116            | P.O. Box 847- 5961 Arcu. Road       | Y                          | hours                     |
+| 42                        | Randy Gelhausen       | 853302254            | 145-4200 In- Avenue                 | Y                          | hours                     |
+| 43                        | Dave Patton           | 977706052            | 3028 A- St.                         | Y                          | hours                     |
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+34 rows selected (0.346 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> create external table seb_drivers_orc
+. . . . . . . . . . . . . . . . . . . . . . .> (
+. . . . . . . . . . . . . . . . . . . . . . .> driverId string,
+. . . . . . . . . . . . . . . . . . . . . . .> name string,
+. . . . . . . . . . . . . . . . . . . . . . .> ssn string,
+. . . . . . . . . . . . . . . . . . . . . . .> location string,
+. . . . . . . . . . . . . . . . . . . . . . .> certified string,
+. . . . . . . . . . . . . . . . . . . . . . .> wagePlan string
+. . . . . . . . . . . . . . . . . . . . . . .> )
+. . . . . . . . . . . . . . . . . . . . . . .> ROW FORMAT DELIMITED
+. . . . . . . . . . . . . . . . . . . . . . .> FIELDS TERMINATED BY ','
+. . . . . . . . . . . . . . . . . . . . . . .> STORED AS ORC
+. . . . . . . . . . . . . . . . . . . . . . .> LOCATION 'drivers/'
+. . . . . . . . . . . . . . . . . . . . . . .> tblproperties ("skip.header.line.count"="1");
+INFO  : Compiling command(queryId=hive_20200918132217_0da6f487-7d36-452d-931e-48fba71659c5): create external table seb_drivers_orc
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1")
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918132217_0da6f487-7d36-452d-931e-48fba71659c5); Time taken: 0.117 seconds
+INFO  : Executing command(queryId=hive_20200918132217_0da6f487-7d36-452d-931e-48fba71659c5): create external table seb_drivers_orc
+(
+driverId string,
+name string,
+ssn string,
+location string,
+certified string,
+wagePlan string
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS ORC
+LOCATION 'drivers/'
+tblproperties ("skip.header.line.count"="1")
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918132217_0da6f487-7d36-452d-931e-48fba71659c5); Time taken: 0.172 seconds
+INFO  : OK
+No rows affected (0.323 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql show tables;
+INFO  : Compiling command(queryId=hive_20200918132416_0215eb3d-98b1-463c-af99-1cc22bf4cff7):  show tables
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918132416_0215eb3d-98b1-463c-af99-1cc22bf4cff7); Time taken: 0.031 seconds
+INFO  : Executing command(queryId=hive_20200918132416_0215eb3d-98b1-463c-af99-1cc22bf4cff7):  show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918132416_0215eb3d-98b1-463c-af99-1cc22bf4cff7); Time taken: 0.014 seconds
+INFO  : OK
++------------------------+
+|        tab_name        |
++------------------------+
+| barthelemy_driver_csv  |
+| barthelemy_driver_orc  |
+| drivers_ocr            |
+| erick_drivers_csv      |
+| erick_drivers_orc      |
+| mouaad_drivers_csv     |
+| mouaad_drivers_orc     |
+| pedro_drivers_csv      |
+| pedro_drivers_orc      |
+| prateek_drivers_csv    |
+| seb_drivers_csv        |
+| seb_drivers_orc        |
++------------------------+
+12 rows selected (0.083 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> INSERT OVERWRITE TABLE seb_drivers_orc SELECT * FROM seb_drivers_csv;
+INFO  : Compiling command(queryId=hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70): INSERT OVERWRITE TABLE seb_drivers_orc SELECT * FROM seb_drivers_csv
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:seb_drivers_csv.driverid, type:string, comment:null), FieldSchema(name:seb_drivers_csv.name, type:string, comment:null), FieldSchema(name:seb_drivers_csv.ssn, type:string, comment:null), FieldSchema(name:seb_drivers_csv.location, type:string, comment:null), FieldSchema(name:seb_drivers_csv.certified, type:string, comment:null), FieldSchema(name:seb_drivers_csv.wageplan, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70); Time taken: 0.421 seconds
+INFO  : Executing command(queryId=hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70): INSERT OVERWRITE TABLE seb_drivers_orc SELECT * FROM seb_drivers_csv
+INFO  : Query ID = hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Subscribed to counters: [] for queryId: hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70
+INFO  : Tez session hasn't been created yet. Opening session
+INFO  : Dag name: INSERT OVERWRITE TABLE seb...seb_drivers_csv (Stage-1)
+INFO  : Status: Running (Executing on YARN cluster with App id application_1596831368636_0269)
+
+----------------------------------------------------------------------------------------------
+        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED
+----------------------------------------------------------------------------------------------
+Map 1 .......... container     SUCCEEDED      1          1        0        0       0       0
+Reducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0
+----------------------------------------------------------------------------------------------
+VERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 5.02 s
+----------------------------------------------------------------------------------------------
+INFO  : Status: DAG finished successfully in 4.34 seconds
+INFO  :
+INFO  : Query Execution Summary
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  : OPERATION                            DURATION
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  : Compile Query                           0.42s
+INFO  : Prepare Plan                            7.49s
+INFO  : Get Query Coordinator (AM)              0.00s
+INFO  : Submit Plan                             0.25s
+INFO  : Start DAG                               0.82s
+INFO  : Run DAG                                 4.34s
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  :
+INFO  : Task Execution Summary
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  :   VERTICES      DURATION(ms)   CPU_TIME(ms)    GC_TIME(ms)   INPUT_RECORDS   OUTPUT_RECORDS
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  :      Map 1           2013.00          4,530             96              34                1
+INFO  :  Reducer 2            297.00          1,290             27               1                0
+INFO  : ----------------------------------------------------------------------------------------------
+INFO  :
+INFO  : org.apache.tez.common.counters.DAGCounter:
+INFO  :    NUM_SUCCEEDED_TASKS: 2
+INFO  :    TOTAL_LAUNCHED_TASKS: 2
+INFO  :    DATA_LOCAL_TASKS: 1
+INFO  :    AM_CPU_MILLISECONDS: 3060
+INFO  :    AM_GC_TIME_MILLIS: 0
+INFO  : File System Counters:
+INFO  :    FILE_BYTES_READ: 729
+INFO  :    FILE_BYTES_WRITTEN: 729
+INFO  :    HDFS_BYTES_READ: 2043
+INFO  :    HDFS_BYTES_WRITTEN: 3101
+INFO  :    HDFS_READ_OPS: 8
+INFO  :    HDFS_WRITE_OPS: 5
+INFO  :    HDFS_OP_CREATE: 3
+INFO  :    HDFS_OP_GET_FILE_STATUS: 7
+INFO  :    HDFS_OP_OPEN: 1
+INFO  :    HDFS_OP_RENAME: 2
+INFO  : org.apache.tez.common.counters.TaskCounter:
+INFO  :    SPILLED_RECORDS: 0
+INFO  :    NUM_SHUFFLED_INPUTS: 1
+INFO  :    NUM_FAILED_SHUFFLE_INPUTS: 0
+INFO  :    GC_TIME_MILLIS: 123
+INFO  :    TASK_DURATION_MILLIS: 2177
+INFO  :    CPU_MILLISECONDS: 5820
+INFO  :    PHYSICAL_MEMORY_BYTES: 2503999488
+INFO  :    VIRTUAL_MEMORY_BYTES: 12492496896
+INFO  :    COMMITTED_HEAP_BYTES: 2503999488
+INFO  :    INPUT_RECORDS_PROCESSED: 35
+INFO  :    INPUT_SPLIT_LENGTH_BYTES: 2043
+INFO  :    OUTPUT_RECORDS: 1
+INFO  :    OUTPUT_LARGE_RECORDS: 0
+INFO  :    OUTPUT_BYTES: 710
+INFO  :    OUTPUT_BYTES_WITH_OVERHEAD: 720
+INFO  :    OUTPUT_BYTES_PHYSICAL: 721
+INFO  :    ADDITIONAL_SPILLS_BYTES_WRITTEN: 0
+INFO  :    ADDITIONAL_SPILLS_BYTES_READ: 0
+INFO  :    ADDITIONAL_SPILL_COUNT: 0
+INFO  :    SHUFFLE_BYTES: 697
+INFO  :    SHUFFLE_BYTES_DECOMPRESSED: 720
+INFO  :    SHUFFLE_BYTES_TO_MEM: 0
+INFO  :    SHUFFLE_BYTES_TO_DISK: 0
+INFO  :    SHUFFLE_BYTES_DISK_DIRECT: 697
+INFO  :    SHUFFLE_PHASE_TIME: 235
+INFO  :    FIRST_EVENT_RECEIVED: 222
+INFO  :    LAST_EVENT_RECEIVED: 222
+INFO  : HIVE:
+INFO  :    CREATED_FILES: 2
+INFO  :    DESERIALIZE_ERRORS: 0
+INFO  :    RECORDS_IN_Map_1: 34
+INFO  :    RECORDS_OUT_0: 1
+INFO  :    RECORDS_OUT_1_dsti_2020_fall_1.seb_drivers_orc: 34
+INFO  :    RECORDS_OUT_INTERMEDIATE_Map_1: 1
+INFO  :    RECORDS_OUT_INTERMEDIATE_Reducer_2: 0
+INFO  :    RECORDS_OUT_OPERATOR_FS_2: 34
+INFO  :    RECORDS_OUT_OPERATOR_FS_9: 1
+INFO  :    RECORDS_OUT_OPERATOR_GBY_5: 1
+INFO  :    RECORDS_OUT_OPERATOR_GBY_7: 1
+INFO  :    RECORDS_OUT_OPERATOR_MAP_0: 0
+INFO  :    RECORDS_OUT_OPERATOR_RS_6: 1
+INFO  :    RECORDS_OUT_OPERATOR_SEL_1: 34
+INFO  :    RECORDS_OUT_OPERATOR_SEL_4: 34
+INFO  :    RECORDS_OUT_OPERATOR_TS_0: 34
+INFO  : TaskCounter_Map_1_INPUT_seb_drivers_csv:
+INFO  :    INPUT_RECORDS_PROCESSED: 34
+INFO  :    INPUT_SPLIT_LENGTH_BYTES: 2043
+INFO  : TaskCounter_Map_1_OUTPUT_Reducer_2:
+INFO  :    ADDITIONAL_SPILLS_BYTES_READ: 0
+INFO  :    ADDITIONAL_SPILLS_BYTES_WRITTEN: 0
+INFO  :    ADDITIONAL_SPILL_COUNT: 0
+INFO  :    OUTPUT_BYTES: 710
+INFO  :    OUTPUT_BYTES_PHYSICAL: 721
+INFO  :    OUTPUT_BYTES_WITH_OVERHEAD: 720
+INFO  :    OUTPUT_LARGE_RECORDS: 0
+INFO  :    OUTPUT_RECORDS: 1
+INFO  :    SPILLED_RECORDS: 0
+INFO  : TaskCounter_Reducer_2_INPUT_Map_1:
+INFO  :    FIRST_EVENT_RECEIVED: 222
+INFO  :    INPUT_RECORDS_PROCESSED: 1
+INFO  :    LAST_EVENT_RECEIVED: 222
+INFO  :    NUM_FAILED_SHUFFLE_INPUTS: 0
+INFO  :    NUM_SHUFFLED_INPUTS: 1
+INFO  :    SHUFFLE_BYTES: 697
+INFO  :    SHUFFLE_BYTES_DECOMPRESSED: 720
+INFO  :    SHUFFLE_BYTES_DISK_DIRECT: 697
+INFO  :    SHUFFLE_BYTES_TO_DISK: 0
+INFO  :    SHUFFLE_BYTES_TO_MEM: 0
+INFO  :    SHUFFLE_PHASE_TIME: 235
+INFO  : TaskCounter_Reducer_2_OUTPUT_out_Reducer_2:
+INFO  :    OUTPUT_RECORDS: 0
+INFO  : org.apache.hadoop.hive.ql.exec.tez.HiveInputCounters:
+INFO  :    GROUPED_INPUT_SPLITS_Map_1: 1
+INFO  :    INPUT_DIRECTORIES_Map_1: 1
+INFO  :    INPUT_FILES_Map_1: 1
+INFO  :    RAW_INPUT_SPLITS_Map_1: 1
+INFO  : Starting task [Stage-2:DEPENDENCY_COLLECTION] in serial mode
+INFO  : Starting task [Stage-0:MOVE] in serial mode
+INFO  : Loading data to table dsti_2020_fall_1.seb_drivers_orc from hdfs://au/user/c.sebastien-dsti/drivers/.hive-staging_hive_2020-09-18_13-25-04_146_8321403345300821459-11/-ext-10000
+INFO  : Starting task [Stage-3:STATS] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918132504_36a88c84-1679-48f0-947e-bccfb93f3c70); Time taken: 13.55 seconds
+INFO  : OK
+No rows affected (13.996 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql select * from seb_drivers_orc;
+INFO  : Compiling command(queryId=hive_20200918132612_a03b67f1-6859-47b7-8848-2c5cc38d4176):  select * from seb_drivers_orc
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:seb_drivers_orc.driverid, type:string, comment:null), FieldSchema(name:seb_drivers_orc.name, type:string, comment:null), FieldSchema(name:seb_drivers_orc.ssn, type:string, comment:null), FieldSchema(name:seb_drivers_orc.location, type:string, comment:null), FieldSchema(name:seb_drivers_orc.certified, type:string, comment:null), FieldSchema(name:seb_drivers_orc.wageplan, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918132612_a03b67f1-6859-47b7-8848-2c5cc38d4176); Time taken: 0.266 seconds
+INFO  : Executing command(queryId=hive_20200918132612_a03b67f1-6859-47b7-8848-2c5cc38d4176):  select * from seb_drivers_orc
+INFO  : Completed executing command(queryId=hive_20200918132612_a03b67f1-6859-47b7-8848-2c5cc38d4176); Time taken: 0.011 seconds
+INFO  : OK
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+| seb_drivers_orc.driverid  | seb_drivers_orc.name  | seb_drivers_orc.ssn  |      seb_drivers_orc.location       | seb_drivers_orc.certified  | seb_drivers_orc.wageplan  |
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+| 11                        | Jamie Engesser        | 262112338            | 366-4125 Ac Street                  | N                          | miles                     |
+| 12                        | Paul Coddin           | 198041975            | Ap #622-957 Risus. Street           | Y                          | hours                     |
+| 13                        | Joe Niemiec           | 139907145            | 2071 Hendrerit. Ave                 | Y                          | hours                     |
+| 14                        | Adis Cesir            | 820812209            | Ap #810-1228 In St.                 | Y                          | hours                     |
+| 15                        | Rohit Bakshi          | 239005227            | 648-5681 Dui- Rd.                   | Y                          | hours                     |
+| 16                        | Tom McCuch            | 363303105            | P.O. Box 313- 962 Parturient Rd.    | Y                          | hours                     |
+| 17                        | Eric Mizell           | 123808238            | P.O. Box 579- 2191 Gravida. Street  | Y                          | hours                     |
+| 18                        | Grant Liu             | 171010151            | Ap #928-3159 Vestibulum Av.         | Y                          | hours                     |
+| 19                        | Ajay Singh            | 160005158            | 592-9430 Nonummy Avenue             | Y                          | hours                     |
+| 20                        | Chris Harris          | 921812303            | 883-2691 Proin Avenue               | Y                          | hours                     |
+| 21                        | Jeff Markham          | 209408086            | Ap #852-7966 Facilisis St.          | Y                          | hours                     |
+| 22                        | Nadeem Asghar         | 783204269            | 154-9147 Aliquam Ave                | Y                          | hours                     |
+| 23                        | Adam Diaz             | 928312208            | P.O. Box 260- 6127 Vitae Road       | Y                          | hours                     |
+| 24                        | Don Hilborn           | 254412152            | 4361 Ac Road                        | Y                          | hours                     |
+| 25                        | Jean-Philippe Playe   | 913310051            | P.O. Box 812- 6238 Ac Rd.           | Y                          | hours                     |
+| 26                        | Michael Aube          | 124705141            | P.O. Box 213- 8948 Nec Ave          | Y                          | hours                     |
+| 27                        | Mark Lochbihler       | 392603159            | 8355 Ipsum St.                      | Y                          | hours                     |
+| 28                        | Olivier Renault       | 959908181            | P.O. Box 243- 6509 Erat. Avenue     | Y                          | hours                     |
+| 29                        | Teddy Choi            | 185502192            | P.O. Box 106- 7003 Amet Rd.         | Y                          | hours                     |
+| 30                        | Dan Rice              | 282307061            | Ap #881-9267 Mollis Avenue          | Y                          | hours                     |
+| 31                        | Rommel Garcia         | 858912101            | P.O. Box 945- 6015 Sociis St.       | Y                          | hours                     |
+| 32                        | Ryan Templeton        | 290304287            | 765-6599 Egestas. Av.               | Y                          | hours                     |
+| 33                        | Sridhara Sabbella     | 967409015            | Ap #477-2507 Sagittis Avenue        | Y                          | hours                     |
+| 34                        | Frank Romano          | 391407216            | Ap #753-6814 Quis Ave               | Y                          | hours                     |
+| 35                        | Emil Siemes           | 971401151            | 321-2976 Felis Rd.                  | Y                          | hours                     |
+| 36                        | Andrew Grande         | 245303216            | Ap #685-9598 Egestas Rd.            | Y                          | hours                     |
+| 37                        | Wes Floyd             | 190504074            | P.O. Box 269- 9611 Nulla Street     | Y                          | hours                     |
+| 38                        | Scott Shaw            | 386411175            | 276 Lobortis Road                   | Y                          | hours                     |
+| 39                        | David Kaiser          | 967706052            | 9185 At Street                      | Y                          | hours                     |
+| 40                        | Nicolas Maillard      | 208510217            | 1027 Quis Rd.                       | Y                          | hours                     |
+| 41                        | Greg Phillips         | 308103116            | P.O. Box 847- 5961 Arcu. Road       | Y                          | hours                     |
+| 42                        | Randy Gelhausen       | 853302254            | 145-4200 In- Avenue                 | Y                          | hours                     |
+| 43                        | Dave Patton           | 977706052            | 3028 A- St.                         | Y                          | hours                     |
++---------------------------+-----------------------+----------------------+-------------------------------------+----------------------------+---------------------------+
+33 rows selected (0.334 seconds)
+
+0: jdbc:hive2://zoo-1.au.adaltas.cloud:2181,z> !sql show tables;
+INFO  : Compiling command(queryId=hive_20200918133447_6a7f91ad-b388-4690-8eac-d10c3eb604a0):  show tables
+INFO  : Semantic Analysis Completed (retrial = false)
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20200918133447_6a7f91ad-b388-4690-8eac-d10c3eb604a0); Time taken: 5.102 seconds
+INFO  : Executing command(queryId=hive_20200918133447_6a7f91ad-b388-4690-8eac-d10c3eb604a0):  show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20200918133447_6a7f91ad-b388-4690-8eac-d10c3eb604a0); Time taken: 0.051 seconds
+INFO  : OK
++----------------------+
+|       tab_name       |
++----------------------+
+| albadrivers_csv      |
+| albadrivers_orc      |
+| barthe_driver_csv    |
+| barthe_driver_orc    |
+| drivers_ocr          |
+| erick_drivers_csv    |
+| erick_drivers_orc    |
+| faouzi_drivers_ocr   |
+| mouaad_drivers_orc   |
+| prateek_drivers_csv  |
+| prateek_drivers_orc  |
+| salim_drivers_csv    |
+| salim_drivers_orc    |
+| seb_drivers_csv      |
+| seb_drivers_orc      |
+| spencer_drivers_csv  |
++----------------------+
+16 rows selected (5.234 seconds)
